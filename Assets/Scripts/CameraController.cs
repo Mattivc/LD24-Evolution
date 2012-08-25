@@ -7,7 +7,7 @@ public class CameraController : MonoBehaviour {
 	
 	private float snapForce = 10f;
 	
-	void Update()
+	void LateUpdate()
 	{
 		transform.position = Vector3.Lerp(transform.position, playerTransform.position, snapForce * Time.deltaTime);
 	}

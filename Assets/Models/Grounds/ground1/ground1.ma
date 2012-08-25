@@ -1,6 +1,6 @@
 //Maya ASCII 2011 scene
-//Name: ground0.ma
-//Last modified: Sat, Aug 25, 2012 04:04:31 PM
+//Name: ground1.ma
+//Last modified: Sat, Aug 25, 2012 04:04:19 PM
 //Codeset: UTF-8
 requires maya "2011";
 currentUnit -l centimeter -a degree -t film;
@@ -11,12 +11,12 @@ fileInfo "cutIdentifier" "201006030016-775252";
 fileInfo "osv" "Mac OS X 10.7.4";
 createNode transform -s -n "persp";
 	setAttr ".v" no;
-	setAttr ".t" -type "double3" 15.314873880915215 32.251793119149781 -17.710459099877927 ;
-	setAttr ".r" -type "double3" -55.538352729601641 136.19999999995875 0 ;
+	setAttr ".t" -type "double3" -31.442565753960046 16.390145791293246 -4.9629871947948381 ;
+	setAttr ".r" -type "double3" -30.338352729551808 268.19999999988784 -1.0177774980683254e-13 ;
 createNode camera -s -n "perspShape" -p "persp";
 	setAttr -k off ".v" no;
 	setAttr ".fl" 34.999999999999986;
-	setAttr ".coi" 40.366926680178125;
+	setAttr ".coi" 34.258239936300292;
 	setAttr ".imn" -type "string" "persp";
 	setAttr ".den" -type "string" "persp_depth";
 	setAttr ".man" -type "string" "persp_mask";
@@ -62,9 +62,9 @@ createNode camera -s -n "sideShape" -p "side";
 	setAttr ".man" -type "string" "side_mask";
 	setAttr ".hc" -type "string" "viewSet -s %camera";
 	setAttr ".o" yes;
-createNode transform -n "ground_0_grp";
-createNode transform -n "ground_0_obj" -p "ground_0_grp";
-createNode mesh -n "ground_0_objShape" -p "ground_0_obj";
+createNode transform -n "ground_1_grp";
+createNode transform -n "ground_1_obj" -p "ground_1_grp";
+createNode mesh -n "ground_1_objShape" -p "ground_1_obj";
 	setAttr -k off ".v";
 	setAttr ".vir" yes;
 	setAttr ".vif" yes;
@@ -144,11 +144,33 @@ createNode script -n "uiConfigurationScriptNode";
 createNode script -n "sceneConfigurationScriptNode";
 	setAttr ".b" -type "string" "playbackOptions -min 1 -max 24 -ast 1 -aet 48 ";
 	setAttr ".st" 6;
-createNode lambert -n "ground_0_mat";
+createNode lambert -n "ground_1_mat";
 createNode shadingEngine -n "lambert2SG";
 	setAttr ".ihi" 0;
 	setAttr ".ro" yes;
 createNode materialInfo -n "materialInfo1";
+createNode polySoftEdge -n "polySoftEdge1";
+	setAttr ".uopa" yes;
+	setAttr ".ics" -type "componentList" 1 "e[*]";
+	setAttr ".ix" -type "matrix" 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1;
+	setAttr ".a" 180;
+createNode polyTweak -n "polyTweak1";
+	setAttr ".uopa" yes;
+	setAttr -s 45 ".tk";
+	setAttr ".tk[25:29]" -type "float3" 0 0.0055190865 0  0 0.051961288 0  0 
+		0.085209459 0  0 0.051961288 0  0 0.0055190865 0 ;
+	setAttr ".tk[35:41]" -type "float3" 0 0.0055190865 0  0 0.14531843 0  0 
+		0.53291011 0  0 0.74717134 0  0 0.53291011 0  0 0.14531843 0  0 0.0055190865 0 ;
+	setAttr ".tk[46:52]" -type "float3" 0 0.051961288 0  0 0.53291011 0  0 1.3326093 
+		0  0 1.7117492 0  0 1.3326093 0  0 0.53291011 0  0 0.051961288 0 ;
+	setAttr ".tk[57:63]" -type "float3" 0 0.085209459 0  0 0.74717134 0  0 1.7117492 
+		0  0 1.9990761 0  0 1.7117492 0  0 0.74717134 0  0 0.085209459 0 ;
+	setAttr ".tk[68:74]" -type "float3" 0 0.051961288 0  0 0.53291011 0  0 1.3326093 
+		0  0 1.7117492 0  0 1.3326093 0  0 0.53291011 0  0 0.051961288 0 ;
+	setAttr ".tk[79:85]" -type "float3" 0 0.0055190865 0  0 0.14531843 0  0 
+		0.53291011 0  0 0.74717134 0  0 0.53291011 0  0 0.14531843 0  0 0.0055190865 0 ;
+	setAttr ".tk[91:95]" -type "float3" 0 0.0055190865 0  0 0.051961288 0  0 
+		0.085209459 0  0 0.051961288 0  0 0.0055190865 0 ;
 select -ne :time1;
 	setAttr ".o" 1;
 	setAttr ".unw" 1;
@@ -169,7 +191,7 @@ select -ne :hardwareRenderGlobals;
 select -ne :defaultHardwareRenderGlobals;
 	setAttr ".fn" -type "string" "im";
 	setAttr ".res" -type "string" "ntsc_4d 646 485 1.333";
-connectAttr "polyPlane1.out" "ground_0_objShape.i";
+connectAttr "polySoftEdge1.out" "ground_1_objShape.i";
 relationship "link" ":lightLinker1" ":initialShadingGroup.message" ":defaultLightSet.message";
 relationship "link" ":lightLinker1" ":initialParticleSE.message" ":defaultLightSet.message";
 relationship "link" ":lightLinker1" "lambert2SG.message" ":defaultLightSet.message";
@@ -178,10 +200,13 @@ relationship "shadowLink" ":lightLinker1" ":initialParticleSE.message" ":default
 relationship "shadowLink" ":lightLinker1" "lambert2SG.message" ":defaultLightSet.message";
 connectAttr "layerManager.dli[0]" "defaultLayer.id";
 connectAttr "renderLayerManager.rlmi[0]" "defaultRenderLayer.rlid";
-connectAttr "ground_0_mat.oc" "lambert2SG.ss";
-connectAttr "ground_0_objShape.iog" "lambert2SG.dsm" -na;
+connectAttr "ground_1_mat.oc" "lambert2SG.ss";
+connectAttr "ground_1_objShape.iog" "lambert2SG.dsm" -na;
 connectAttr "lambert2SG.msg" "materialInfo1.sg";
-connectAttr "ground_0_mat.msg" "materialInfo1.m";
+connectAttr "ground_1_mat.msg" "materialInfo1.m";
+connectAttr "polyTweak1.out" "polySoftEdge1.ip";
+connectAttr "ground_1_objShape.wm" "polySoftEdge1.mp";
+connectAttr "polyPlane1.out" "polyTweak1.ip";
 connectAttr "lambert2SG.pa" ":renderPartition.st" -na;
-connectAttr "ground_0_mat.msg" ":defaultShaderList1.s" -na;
-// End of ground0.ma
+connectAttr "ground_1_mat.msg" ":defaultShaderList1.s" -na;
+// End of ground1.ma

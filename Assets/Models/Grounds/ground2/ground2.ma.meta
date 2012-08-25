@@ -1,18 +1,16 @@
 fileFormatVersion: 2
-guid: fa1960d6b56894945b9567a1b2701b59
+guid: 6bec27f9e419241759e5fee7ed71703e
 ModelImporter:
   fileIDToRecycleName:
-    4300000: ground_0_obj
-    4300002: ground_0
-    4300004: ground_2_obj
-    4300006: water_obj
+    4300000: ground_2_obj
+    4300002: water_obj
   serializedVersion: 10
   materials:
     importMaterials: 1
     materialName: 0
     materialSearch: 1
   animations:
-    generateAnimations: 0
+    generateAnimations: 3
     bakeSimulation: 0
     splitAnimations: 1
     animationCompression: 1
@@ -43,11 +41,30 @@ ModelImporter:
     //RootNode:
       data:
         first: 1
+        second: a4860100
+      data:
+        first: 4
+        second: 841a0600
+      data:
+        first: 111
+        second: 605fa900
+    ground_2_obj:
+      data:
+        first: 1
         second: a2860100
       data:
         first: 4
         second: 821a0600
-    ground_2_obj:
+      data:
+        first: 23
+        second: 62182300
+      data:
+        first: 33
+        second: a25a3200
+      data:
+        first: 64
+        second: 00a86100
+    water_obj:
       data:
         first: 1
         second: a0860100
@@ -60,22 +77,6 @@ ModelImporter:
       data:
         first: 33
         second: a05a3200
-      data:
-        first: 64
-        second: 00a86100
-    water_obj:
-      data:
-        first: 1
-        second: a4860100
-      data:
-        first: 4
-        second: 841a0600
-      data:
-        first: 23
-        second: 62182300
-      data:
-        first: 33
-        second: a25a3200
       data:
         first: 64
         second: 02a86100

@@ -13,3 +13,6 @@ Library/
 *.suo
 *.sln
 *.svd
+
+# Maya files
+*.mayaSwatches

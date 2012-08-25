@@ -1,0 +1,14 @@
+# Convert all text files to Unix file endings
+README				text eol=fl
+*.gitignore			text eol=fl
+*.gitattributes		text eol=fl
+*.cs				text eol=fl
+*.js				text eol=fl
+*.meta				text eol=fl
+
+# Text serialized files
+*.prefab			text eol=fl
+*.unity				text eol=fl
+
+# Keep asset files as binary
+*.asset 			binary
